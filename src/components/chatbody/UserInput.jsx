@@ -11,7 +11,6 @@ import {
   updateDoc,
   getDoc,
   setDoc,
-  FieldValue,
 } from "firebase/firestore";
 
 import { db, storage } from "../../firebase";
@@ -21,7 +20,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 const UserInput = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
-  const [fileNames, setFileNames] = useState('');
+  
 
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
@@ -140,7 +139,7 @@ const UserInput = () => {
 
   useEffect(() => {
     handleSend(); // Automatically send images when they are selected
-  }, [img]);
+  }, [img, handleSend]);
 
   return (
     <div className="h-16 flex items-center gap-5 justify-between">

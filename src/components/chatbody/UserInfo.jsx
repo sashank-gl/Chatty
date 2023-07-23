@@ -4,7 +4,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { deleteDoc, doc } from "firebase/firestore"; // Import the deleteDoc function from Firestore
 import { db } from "../../firebase";
-import { MdOpenInBrowser } from "react-icons/md";
+// import { MdOpenInBrowser } from "react-icons/md";
 
 const UserInfo = () => {
   const { data, dispatch } = useContext(ChatContext);

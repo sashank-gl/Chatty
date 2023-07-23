@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
 import {
   collection,
   query,

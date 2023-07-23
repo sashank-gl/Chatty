@@ -4,7 +4,6 @@ import { AuthContext } from "../contexts/AuthContext";
 import { ChatContext } from "../contexts/ChatContext";
 import { db } from "../firebase";
 import Search from "./Search";
-import { v4 as uuid } from "uuid";
 import ChatBody from "./ChatBody";
 
 const Chats = () => {
@@ -61,7 +60,7 @@ const Chats = () => {
   useEffect(() => {
     // Call the function when the component mounts to get the last message
     handlelastMessage();
-  }, [selectedChat]);
+  }, [selectedChat, handlelastMessage]);
 
   console.log("Last Messages", lastMessages);
 

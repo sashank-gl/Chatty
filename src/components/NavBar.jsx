@@ -13,7 +13,7 @@ const NavBar = () => {
       <div className="flex items-center ml-5 font-righteous">Chatty</div>
       <div className="flex items-center gap-3 mr-5">
         <div className="flex  items-center gap-3  rounded-full min-w-min p-1 pl-3 pr-3 text-white font-semibold">
-          <img className="w-8 h-8 object-cover rounded-full" src={currentUser.photoURL} />
+          <img className="w-8 h-8 object-cover rounded-full" src={currentUser.photoURL} alt="profile" />
           {currentUser.displayName}
 </div>
         <div onClick={() => signOut(auth)} className="cursor-pointer">Sign Out</div>
