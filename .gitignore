@@ -6,7 +6,6 @@
 .env.dev
 
 # Ignore build artifacts
-build/
 dist/
 node_modules/
 
