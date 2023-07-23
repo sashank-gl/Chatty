@@ -10,9 +10,7 @@ const App = () => {
   const { currentUser } = useContext(AuthContext);
 
   const ProtectedRoute = ({ children }) => {
-    console.log(currentUser); // Move this console.log before the return statement
     if (!currentUser) {
-      console.log(currentUser); // Move this console.log before the return statement
       return <Navigate to="/signin" />;
     }
     return children;

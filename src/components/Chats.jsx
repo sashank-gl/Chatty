@@ -8,7 +8,6 @@ import { v4 as uuid } from "uuid";
 import ChatBody from "./ChatBody";
 
 const Chats = () => {
-  // ... other state variables and context initialization
 
   const [chats, setChats] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null);
