@@ -1,0 +1,25 @@
+
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* styles.css (or any other CSS file you are using) */
+
+/* Hide scrollbar track for Webkit-based browsers (Chrome, Safari) */
+.scrollbar-light::-webkit-scrollbar {
+    /* width: 6px; */
+    display: none;
+  }
+  
+  /* Customize scrollbar thumb (draggable part) for Webkit-based browsers */
+  .scrollbar-light::-webkit-scrollbar-thumb {
+    background-color: #818cf8;
+    border-radius: 3px;
+  }
+  
+  /* Hide scrollbar track for Mozilla Firefox */
+  /* .scrollbar-light {
+    scrollbar-width: thin;
+    margin-bottom: 0;
+  } */
