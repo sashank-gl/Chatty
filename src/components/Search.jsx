@@ -23,20 +23,37 @@ const Search = ({ onSelect }) => {
   const { dispatch } = useContext(ChatContext);
 
   const handleSearch = async () => {
-    const q = query(
-      collection(db, "users"),
-      where("displayName", "==", username)
-    );
+    const userRef = collection(db, "users");
+    const lowerCaseUsername = username.toLowerCase(); 
 
+    const q = query(
+      userRef,
+      where("email", "==", lowerCaseUsername)
+    );
+  
+    const q1 = query(
+      userRef,
+      where("displayName", "==", lowerCaseUsername)
+    );
+  
     try {
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        setUser(doc.data());
-      });
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach((doc) => {
+          setUser(doc.data());
+        });
+      } else {
+        const querySnapshot1 = await getDocs(q1);
+        querySnapshot1.forEach((doc) => {
+          setUser(doc.data());
+        });
+      }
+      setErr(false); // Reset the error state in case the previous search had an error.
     } catch (err) {
       setErr(true);
     }
   };
+  
 
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();
@@ -84,13 +101,11 @@ const Search = ({ onSelect }) => {
 
   const handleChange = (e) => {
     const inputValue = e.target.value;
-    const capitalizedValue =
-      inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
-    setUsername(capitalizedValue);
+    setUsername(inputValue);
   };
 
   return (
-    <div className="w-full text-slate-700 pt-12">
+    <div className="w-full text-slate-700 md:pt-12">
       <div className="">
         <input
           className="h-16 w-full border-b pl-2 focus:outline-none focus:border-transparent"
@@ -111,7 +126,7 @@ const Search = ({ onSelect }) => {
               alt=""
             />
             <div className="ml-3">
-              <div className="text-xl">{user.displayName}</div>
+              <div className="text-xl">{user?.displayName ? user.displayName.charAt(0).toUpperCase() + user.displayName.slice(1).toLowerCase() : ''}</div>
               <div className="text-xs">{user.email}</div>
             </div>
           </div>

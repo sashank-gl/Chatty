@@ -34,7 +34,11 @@ const UserInfo = () => {
 
   return (
     <div className="h-16 flex items-center justify-between ml-3 text-indigo-950">
-      <div className="font-semibold text-2xl">{data.user?.displayName}</div>
+     <div className="font-semibold text-2xl">
+  {data.user?.displayName ? data.user.displayName.charAt(0).toUpperCase() + data.user.displayName.slice(1).toLowerCase() : ''}
+</div>
+
+
 
       <div className="w-12 relative cursor-pointer">
         <div onClick={handleMenu}>

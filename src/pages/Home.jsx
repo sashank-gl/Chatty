@@ -4,7 +4,7 @@ import Chats from "../components/Chats";
 
 const Home = () => {
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-br from-rose-500 to-sky-500">
+    <div className="pt-12 md:pt-0 flex justify-center items-center h-screen bg-gradient-to-br from-rose-500 to-sky-500">
       <div className="">
       <NavBar />
       <Chats />

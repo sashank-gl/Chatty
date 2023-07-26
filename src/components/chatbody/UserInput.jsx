@@ -139,7 +139,7 @@ const UserInput = () => {
 
   useEffect(() => {
     handleSend(); // Automatically send images when they are selected
-  }, [img, handleSend]);
+  }, [img, ]);
 
   return (
     <div className="h-16 flex items-center gap-5 justify-between">

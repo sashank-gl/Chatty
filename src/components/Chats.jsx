@@ -5,9 +5,9 @@ import { ChatContext } from "../contexts/ChatContext";
 import { db } from "../firebase";
 import Search from "./Search";
 import ChatBody from "./ChatBody";
+import Start from "./chatbody/Start";
 
 const Chats = () => {
-
   const [chats, setChats] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null);
   const { currentUser } = useContext(AuthContext);
@@ -60,13 +60,13 @@ const Chats = () => {
   useEffect(() => {
     // Call the function when the component mounts to get the last message
     handlelastMessage();
-  }, [selectedChat, handlelastMessage]);
+  }, [selectedChat]);
 
   console.log("Last Messages", lastMessages);
 
   return (
-    <div className="flex w-main h-main bg-white rounded-t-3xl">
-      <div className="w-1/4 rounded-t-3xl border-r">
+    <div className="md:flex flex-row w-80 md:w-main h-main bg-white rounded-t-3xl">
+      <div className="md:w-1/4 rounded-t-3xl border-r">
         <Search onSelect={handleSelect} />
         {chats &&
           Object.entries(chats)
@@ -78,34 +78,42 @@ const Chats = () => {
               return (
                 <div>
                   {chatData.userInfo ? (
-                <div
-                  className={`flex h-16 p-2 border-b justify-between items-center cursor-pointer ${
-                    selectedChat === chatData?.userInfo?.uid
-                      ? "bg-indigo-100"
-                      : ""
-                  }`}
-                  key={chatId}
-                  onClick={() => handleSelect(chatData?.userInfo)}
-                >
-                  <div className="flex items-center">
-                    <img
-                      className="h-10 w-10 object-cover rounded-full"
-                      src={chatData?.userInfo?.photoURL}
-                      alt=""
-                    />
-                    <div className="ml-3 text-xl">
-                      {chatData?.userInfo?.displayName}
+                    <div
+                      className={`flex h-16 p-2 border-b justify-between items-center cursor-pointer ${
+                        selectedChat === chatData?.userInfo?.uid
+                          ? "bg-indigo-100"
+                          : ""
+                      }`}
+                      key={chatId}
+                      onClick={() => handleSelect(chatData?.userInfo)}
+                    >
+                      <div className="flex items-center">
+                        <img
+                          className="h-10 w-10 object-cover rounded-full"
+                          src={chatData?.userInfo?.photoURL}
+                          alt=""
+                        />
+                        <div className="ml-3 text-xl">
+                          {chatData?.userInfo?.displayName ? chatData?.userInfo?.displayName.charAt(0).toUpperCase() + chatData?.userInfo?.displayName.slice(1).toLowerCase() : ''}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                ):(
-                  <div></div>
-                )}
+                  ) : (
+                    <div></div>
+                  )}
                 </div>
               );
             })}
       </div>
-      <div className="w-3/4">{showChatBody && <ChatBody />}</div>
+      {showChatBody ? (
+        <div className="md:w-3/4">
+          <ChatBody />
+        </div>
+      ) : (
+        <div className="md:w-3/4 w-80">
+          <Start />
+        </div>
+      )}
     </div>
   );
 };
